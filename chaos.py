@@ -3,8 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Lattice parameters
-n = 128  # Dimension
-q = 2**13 - 1  # Modulus
+n = 128
+q = 2**13 - 1
 
 # Random number generator
 rng = np.random.default_rng()
@@ -27,12 +27,12 @@ def lattice_keygen():
 def chaos_map(x: float, r: float) -> float:
     return r * x * (1 - x)
 
-# Encapsulation function
-def lattice_chaos_encapsulation(message: str, public_key: tuple, r: float = 3.9) -> tuple:
+# Modified encapsulation function to include lattice-based operations
+def lattice_chaos_encapsulation_with_lattice(message: str, public_key: tuple, r: float = 3.9) -> tuple:
     A, b = public_key
-    random_vector = np.random.randint(0, 2, A.shape[1])
-    error_vector = np.random.normal(0, 1, A.shape[0])
-    u = np.dot(A, random_vector) + error_vector
+    random_vector = rng.integers(0, q, A.shape[1]) % q
+    error_vector = sample_gaussian(A.shape[0])
+    u = (A @ random_vector + error_vector) % q
     initial_condition = 0.5
     encrypted_message = ""
     for char in message:
@@ -41,10 +41,10 @@ def lattice_chaos_encapsulation(message: str, public_key: tuple, r: float = 3.9)
         encrypted_message += chr(key % 256)
     return encrypted_message, u
 
-# Decapsulation function
-def lattice_chaos_decapsulation(encrypted_message: str, u: np.ndarray, private_key: np.ndarray, r: float = 3.9) -> str:
+# Modified decapsulation function to include lattice-based operations
+def lattice_chaos_decapsulation_with_lattice(encrypted_message: str, u: np.ndarray, private_key: np.ndarray, r: float = 3.9) -> str:
     A, s = private_key
-    v = u - np.dot(A, s)
+    v = (u - (A @ s)) % q
     initial_condition = 0.5
     decrypted_message = ""
     for char in encrypted_message:
@@ -53,40 +53,39 @@ def lattice_chaos_decapsulation(encrypted_message: str, u: np.ndarray, private_k
         decrypted_message += chr(key % 256)
     return decrypted_message
 
-# Parameters for benchmarking
-num_executions_lattice = 100
-message_length_lattice = 100
-
-# Benchmarking function
-def benchmark_chaos_lattice():
+# Benchmarking function for the modified chaos-lattice approach with lattice
+def benchmark_chaos_lattice_with_lattice():
     keygen_times = []
     encapsulation_times = []
     decapsulation_times = []
-    for _ in range(num_executions_lattice):
-        # Key generation
+    for _ in range(100):
         start_time = timer()
         public_key, private_key = lattice_keygen()
         end_time = timer()
         keygen_times.append(end_time - start_time)
-        # Encapsulation
-        message = "A" * message_length_lattice
+        message = "A" * 100
         start_time = timer()
-        encrypted_message, u = lattice_chaos_encapsulation(message, public_key)
+        encrypted_message, u = lattice_chaos_encapsulation_with_lattice(message, public_key)
         end_time = timer()
         encapsulation_times.append(end_time - start_time)
-        # Decapsulation
         start_time = timer()
-        decrypted_message = lattice_chaos_decapsulation(encrypted_message, u, (public_key[0], private_key))
+        decrypted_message = lattice_chaos_decapsulation_with_lattice(encrypted_message, u, (public_key[0], private_key))
         end_time = timer()
         decapsulation_times.append(end_time - start_time)
-    # Converting time to cycles
-    keygen_cycles = sum(keygen_times) * 2.9e9 / num_executions_lattice
-    encapsulation_cycles = sum(encapsulation_times) * 2.9e9 / num_executions_lattice
-    decapsulation_cycles = sum(decapsulation_times) * 2.9e9 / num_executions_lattice
+    keygen_cycles = sum(keygen_times) * 2.9e9 / 100
+    encapsulation_cycles = sum(encapsulation_times) * 2.9e9 / 100
+    decapsulation_cycles = sum(decapsulation_times) * 2.9e9 / 100
     return keygen_cycles, encapsulation_cycles, decapsulation_cycles
 
-# Running the benchmark tests
-our_keygen_cycles_lattice, our_encapsulation_cycles_lattice, our_decapsulation_cycles_lattice = benchmark_chaos_lattice()
+# Running the benchmark tests for the modified version with lattice
+our_keygen_cycles_lattice_with_lattice, our_encapsulation_cycles_lattice_with_lattice, our_decapsulation_cycles_lattice_with_lattice = benchmark_chaos_lattice_with_lattice()
+
+# Benchmark results for the modified version
+benchmark_results_with_lattice = {
+    "Chaos-Lattice with Lattice (Key Generation)": our_keygen_cycles_lattice_with_lattice,
+    "Chaos-Lattice with Lattice (Encapsulation)": our_encapsulation_cycles_lattice_with_lattice,
+    "Chaos-Lattice with Lattice (Decapsulation)": our_decapsulation_cycles_lattice_with_lattice
+}
 
 # Kyber data
 kyber_data = {
@@ -98,24 +97,25 @@ kyber_data = {
     "kyber768_clean": [1_059_876, 1_352_934, 1_471_055]
 }
 
-# Adding our hybrid method to Kyber data
-kyber_data["chaos_lattice"] = [int(our_keygen_cycles_lattice), int(our_encapsulation_cycles_lattice), int(our_decapsulation_cycles_lattice)]
+# Adding Chaos-Lattice data
+kyber_data["Chaos-Lattice"] = [int(our_keygen_cycles_lattice_with_lattice), int(our_encapsulation_cycles_lattice_with_lattice), int(our_decapsulation_cycles_lattice_with_lattice)]
 
-# Plotting the comparison
-labels = list(kyber_data.keys())
-key_gen = [data[0] for data in kyber_data.values()]
-encapsulation = [data[1] for data in kyber_data.values()]
-decapsulation = [data[2] for data in kyber_data.values()]
-colors = ['blue' if label != "chaos_lattice" else 'red' for label in labels]
-plt.figure(figsize=(12, 8))
-plt.bar(labels, key_gen, color=colors, label="Key Generation")
-plt.bar(labels, encapsulation, bottom=key_gen, color=colors, alpha=0.6, label="Encapsulation")
-plt.bar(labels, decapsulation, bottom=[i + j for i, j in zip(key_gen, encapsulation)], color=colors, alpha=0.3, label="Decapsulation")
+# Function to plot comparison between Chaos-Lattice and all Kyber models
+def plot_all_kyber_comparisons(title, stage_index, stage_name):
+    labels = list(kyber_data.keys())
+    values = [data[stage_index] for data in kyber_data.values()]
+    colors = ['blue' if label != "Chaos-Lattice" else 'red' for label in labels]
 
-plt.yscale("log")
-plt.xticks(rotation=45, ha='right')
-plt.ylabel("Cycles (log scale)")
-plt.title("Comparison of Kyber and My Hybrid Chaos Theory Cipher")
-plt.legend()
-plt.tight_layout()
-plt.show()
+    plt.figure(figsize=(12, 8))
+    plt.bar(labels, values, color=colors)
+    plt.yscale("log")
+    plt.xticks(rotation=45, ha='right')
+    plt.ylabel("Cycles (log scale)")
+    plt.title(f"{title}: Chaos-Lattice vs Kyber Models")
+    plt.tight_layout()
+    plt.show()
+
+# Plotting comparisons for all stages
+plot_all_kyber_comparisons("Key Generation Comparison", 0, "Key Generation")
+plot_all_kyber_comparisons("Encapsulation Comparison", 1, "Encapsulation")
+plot_all_kyber_comparisons("Decapsulation Comparison", 2, "Decapsulation")
