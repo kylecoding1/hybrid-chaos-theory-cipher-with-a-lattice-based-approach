@@ -30,5 +30,5 @@ Decapsulation cycles.
 ![3c792dbf-3c28-445f-b231-2734324a1d10](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/8129c90d-acce-4386-a3ef-87ddbbbf79a4)
 The graph above shows the decapsulation comparison, with our hybrid chaos-lattice method marked in red.
 
-Summary
+## Summary
 By looking at these graphs, you can analyze the performance of our method compared to other cryptographic systems. You can identify where our system is more efficient and make observations about the key generation, encapsulation, and decapsulation cycles.
