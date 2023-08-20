@@ -32,3 +32,7 @@ The graph above shows the decapsulation comparison, with our hybrid chaos-lattic
 
 ## Summary
 By looking at these graphs, you can analyze the performance of our method compared to other cryptographic systems. You can identify where our system is more efficient and make observations about the key generation, encapsulation, and decapsulation cycles.
+
+
+## License 
+MIT
