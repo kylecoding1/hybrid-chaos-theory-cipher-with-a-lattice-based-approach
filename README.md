@@ -10,4 +10,4 @@ With the advent of quantum computing, traditional cryptographic methods are at r
 
 ## Kyber = Blue shade
 ## My hybrid-chaos-theory-cipher-with-a-lattice-based-approach = red shade
-![3867694a-e2d3-4264-a809-7b6db0879f30 ](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/6da240e8-56ed-40db-864b-97b0a11195d1)
+![3867694a-e2d3-4264-a809-7b6db0879f30 ](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/b69787d9-fab8-4bb9-9203-a4fc1f442e7e)
