@@ -2,7 +2,11 @@
 
 ## Introduction
 
-With the advent of quantum computing, traditional cryptographic methods are at risk of becoming obsolete. Quantum-resistant algorithms are urgently needed to ensure the continued security of digital communication. This paper introduces a novel cryptographic scheme that integrates chaos theory and a lattice-based approach to create a unique, efficient, and potentially quantum-resistant cipher.
+Quantum computing threatens traditional cryptography. This paper presents a new, potentially quantum-resistant cipher that combines chaos theory and lattice-based methods for efficient and unique digital security.
+
+
+
+
 
 ![Screenshot 2023-08-20 021815](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/01791111-c749-400d-a892-c79914997727)
 ![Screenshot 2023-08-20 021840](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/7b127e64-42e4-49cd-bbba-b64628b98e32)
