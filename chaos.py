@@ -38,7 +38,7 @@ def lattice_keygen():
     private_key = s
     return public_key, private_key
 
-def generate_random_padding(length=2000):
+def generate_random_padding(length=1000):
     characters = list(ascii_letters + digits)  # Convert to list
     return ''.join(random.choice(characters) for _ in range(length))
 
@@ -73,7 +73,7 @@ def logistic_lattice_chaos_decapsulation(encrypted_message: str, u: np.ndarray, 
     computed_mac = hmac_sha3(shared_secret_key, encrypted_message.encode('utf-8'))
     if computed_mac != received_mac:
         raise Exception("MAC verification failed")
-    return decrypted_message_with_padding[2000:]  # Remove the padding
+    return decrypted_message_with_padding[1000:]  # Remove the padding
 
 def calculate_differential(string1: str, string2: str) -> float:
     differences = sum(c1 != c2 for c1, c2 in zip(string1, string2))
@@ -90,18 +90,39 @@ def calculate_entropy(message):
     entropy = -sum((count / total_chars) * math.log2(count / total_chars) for count in frequencies.values())
     return entropy
 
+# Compute private key entropy
+def private_key_entropy(private_key):
+    return n * math.log2(q)
+
+def key_entropy(key: bytes) -> float:
+    return len(key) * math.log2(256)  # 2^8 possible values for each byte
+
+
+# Key Generation Timing
+start_time_keygen = time.time()
+public_key, private_key = lattice_keygen()
+end_time_keygen = time.time()
+keygen_duration = end_time_keygen - start_time_keygen
+
+keygen_entropy = private_key_entropy(private_key)
+
+
+
 message1 = "fcvvv "
 message2 = "vvvv"
 public_key, private_key = lattice_keygen() 
-shared_secret_key = secrets.token_bytes(16)
+shared_secret_key = secrets.token_bytes(32)
+
 encrypted_message1, u1, mac1, iv1 = logistic_lattice_chaos_encapsulation(message1, public_key, shared_secret_key)
 encrypted_message2, _, _, _ = logistic_lattice_chaos_encapsulation(message2, public_key, shared_secret_key)
 decrypted_message1 = logistic_lattice_chaos_decapsulation(encrypted_message1, u1, private_key, shared_secret_key, mac1, iv1)
 differential_percentage = calculate_differential(encrypted_message1, encrypted_message2)
 
 # Calculate entropy of keys and messages
-entropy_shared_secret_key = calculate_entropy(shared_secret_key)
-entropy_private_key = calculate_entropy(private_key.tostring())  # Convert private_key to bytes
+entropy_shared_secret_key = key_entropy(shared_secret_key)
+
+entropy_private_key = calculate_entropy(private_key.tobytes())  # Convert private_key to bytes
+
 entropy_encrypted_message1 = calculate_entropy(encrypted_message1)
 entropy_encrypted_message2 = calculate_entropy(encrypted_message2)
 
@@ -134,11 +155,11 @@ decryption_duration = end_time_dec - start_time_dec
 decryption_success = decrypted_message1 == message1
 print("Decryption success:", decryption_success)
 print("Differential percentage:", differential_percentage)
-print("Entropy of shared secret key:", entropy_shared_secret_key)
-print("Entropy of private key:", entropy_private_key)
 print("Entropy of encrypted message 1:", entropy_encrypted_message1)
 print("Entropy of encrypted message 2:", entropy_encrypted_message2)
 print("Estimated key entropy:", key_entropy, "bits")
 print("Key Generation Time:", keygen_duration, "seconds")
 print("Encryption Time:", encryption_duration, "seconds")
 print("Decryption Time:", decryption_duration, "seconds")
+print("Private Key Entropy:", keygen_entropy, "bits")
+print("Entropy of shared secret key:", entropy_shared_secret_key, "bits")
