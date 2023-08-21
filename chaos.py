@@ -1,20 +1,24 @@
+
 from timeit import default_timer as timer
 import numpy as np
 import matplotlib.pyplot as plt
+import secrets
+from numpy.random import Generator, PCG64
 
 # Lattice parameters
 n = 128
 q = 2**13 - 1
 
-# Random number generator
-rng = np.random.default_rng()
-
 # Gaussian distribution sampling function
 def sample_gaussian(size):
+    seed = secrets.randbits(128)
+    rng = Generator(PCG64(seed))
     return rng.normal(0, 1, size) % q
 
 # Lattice key generation function
 def lattice_keygen():
+    seed = secrets.randbits(128)
+    rng = Generator(PCG64(seed))
     s = rng.integers(0, q, n) % q
     A = rng.integers(0, q, (n, n)) % q
     e = sample_gaussian(n)
@@ -30,6 +34,8 @@ def chaos_map(x: float, r: float) -> float:
 # Modified encapsulation function to include lattice-based operations
 def lattice_chaos_encapsulation_with_lattice(message: str, public_key: tuple, r: float = 3.9) -> tuple:
     A, b = public_key
+    seed = secrets.randbits(128)
+    rng = Generator(PCG64(seed))
     random_vector = rng.integers(0, q, A.shape[1]) % q
     error_vector = sample_gaussian(A.shape[0])
     u = (A @ random_vector + error_vector) % q
@@ -58,7 +64,7 @@ def benchmark_chaos_lattice_with_lattice():
     keygen_times = []
     encapsulation_times = []
     decapsulation_times = []
-    for _ in range(100):
+    for _ in range(10):  # Reduced iterations to 10 for quicker execution
         start_time = timer()
         public_key, private_key = lattice_keygen()
         end_time = timer()
@@ -72,9 +78,9 @@ def benchmark_chaos_lattice_with_lattice():
         decrypted_message = lattice_chaos_decapsulation_with_lattice(encrypted_message, u, (public_key[0], private_key))
         end_time = timer()
         decapsulation_times.append(end_time - start_time)
-    keygen_cycles = sum(keygen_times) * 2.9e9 / 100
-    encapsulation_cycles = sum(encapsulation_times) * 2.9e9 / 100
-    decapsulation_cycles = sum(decapsulation_times) * 2.9e9 / 100
+    keygen_cycles = sum(keygen_times) * 2.9e9 / 10
+    encapsulation_cycles = sum(encapsulation_times) * 2.9e9 / 10
+    decapsulation_cycles = sum(decapsulation_times) * 2.9e9 / 10
     return keygen_cycles, encapsulation_cycles, decapsulation_cycles
 
 # Running the benchmark tests for the modified version with lattice
