@@ -1,36 +1,37 @@
-
 from timeit import default_timer as timer
 import numpy as np
 import matplotlib.pyplot as plt
-import secrets
 from numpy.random import Generator, PCG64
+import secrets
+
+# Seeding the cryptographically secure random generator
+secure_seed = secrets.randbits(128)
+rng = Generator(PCG64(secure_seed))
 
 # Lattice parameters
 n = 128
 q = 2**13 - 1
 
+
 # Gaussian distribution sampling function
 def sample_gaussian(size):
-    seed = secrets.randbits(128)
-    rng = Generator(PCG64(seed))
     return rng.normal(0, 1, size) % q
 
 # Lattice key generation function
 def lattice_keygen():
-    seed = secrets.randbits(128)
-    rng = Generator(PCG64(seed))
     s = rng.integers(0, q, n) % q
     A = rng.integers(0, q, (n, n)) % q
-    e = sample_gaussian(n)
+    e = rng.normal(0, 1, n) % q  # Gaussian distribution using the new Generator
     b = (A @ s + e) % q
     public_key = (A, b)
     private_key = s
     return public_key, private_key
 
+
+
 # Chaos map function
 def chaos_map(x: float, r: float) -> float:
     return r * x * (1 - x)
-
 # Modified encapsulation function to include lattice-based operations
 def lattice_chaos_encapsulation_with_lattice(message: str, public_key: tuple, r: float = 3.9) -> tuple:
     A, b = public_key
@@ -121,7 +122,8 @@ def plot_all_kyber_comparisons(title, stage_index, stage_name):
     plt.tight_layout()
     plt.show()
 
-# Plotting comparisons for all stages
+# Running the benchmark tests and plotting the comparisons
+
 plot_all_kyber_comparisons("Key Generation Comparison", 0, "Key Generation")
 plot_all_kyber_comparisons("Encapsulation Comparison", 1, "Encapsulation")
 plot_all_kyber_comparisons("Decapsulation Comparison", 2, "Decapsulation")
