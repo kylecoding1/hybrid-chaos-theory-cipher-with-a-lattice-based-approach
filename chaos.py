@@ -4,6 +4,7 @@ import numpy as np
 from numpy.random import Generator, PCG64
 import secrets
 from typing import Tuple
+import math
 
 # Quantum-resistant hash function (SHA-3)
 def hmac_sha3(key, message):
@@ -30,6 +31,7 @@ def lattice_keygen():
     public_key = (A, b)
     private_key = s
     return public_key, private_key
+
 
 def logistic_lattice_chaos_encapsulation(message: str, public_key: tuple, shared_secret_key) -> Tuple[str, np.ndarray, bytes, float]:
     A, b = public_key
@@ -66,9 +68,20 @@ def calculate_differential(string1: str, string2: str) -> float:
     differences = sum(c1 != c2 for c1, c2 in zip(string1, string2))
     return (differences / len(string1)) * 100
 
+
+def calculate_entropy(message):
+    from collections import Counter
+    import math
+    
+    frequencies = Counter(message)
+    total_chars = len(message)
+    
+    entropy = -sum((count / total_chars) * math.log2(count / total_chars) for count in frequencies.values())
+    return entropy
+
 # Testing the code
-message1 = "This is a test message."
-message2 = "This is b test message!"
+message1 = "heoodof waf f "
+message2 = "fewaefs wfewe  wfae"
 public_key, private_key = lattice_keygen()
 shared_secret_key = secrets.token_bytes(16)
 encrypted_message1, u1, mac1, iv1 = logistic_lattice_chaos_encapsulation(message1, public_key, shared_secret_key)
@@ -76,6 +89,23 @@ encrypted_message2, _, _, _ = logistic_lattice_chaos_encapsulation(message2, pub
 decrypted_message1 = logistic_lattice_chaos_decapsulation(encrypted_message1, u1, private_key, shared_secret_key, mac1, iv1)
 differential_percentage = calculate_differential(encrypted_message1, encrypted_message2)
 
+# Calculate entropy of keys and messages
+entropy_shared_secret_key = calculate_entropy(shared_secret_key)
+entropy_private_key = calculate_entropy(private_key.tostring())  # Convert private_key to bytes
+entropy_encrypted_message1 = calculate_entropy(encrypted_message1)
+entropy_encrypted_message2 = calculate_entropy(encrypted_message2)
+
+# Compare entropy values to estimated key entropy
+key_length = len(shared_secret_key)
+possible_values = 256  # 2^8 possible values for each byte
+key_entropy = key_length * math.log2(possible_values)
+
 # Results
 decryption_success = decrypted_message1 == message1
-decryption_success, differential_percentage
+print("Decryption success:", decryption_success)
+print("Differential percentage:", differential_percentage)
+print("Entropy of shared secret key:", entropy_shared_secret_key)
+print("Entropy of private key:", entropy_private_key)
+print("Entropy of encrypted message 1:", entropy_encrypted_message1)
+print("Entropy of encrypted message 2:", entropy_encrypted_message2)
+print("Estimated key entropy:", key_entropy, "bits")
