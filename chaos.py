@@ -43,6 +43,9 @@ def generate_random_padding(length=1000):
     return ''.join(random.choice(characters) for _ in range(length))
 
 def logistic_lattice_chaos_encapsulation(message: str, public_key: tuple, shared_secret_key) -> Tuple[str, np.ndarray, bytes, float]:
+    if not isinstance(message, str):
+        raise TypeError("Message must be a string")
+
     padding = generate_random_padding()  # Generate random padding
     message_with_padding = padding + message  # Concatenate with the original message
     A, b = public_key
