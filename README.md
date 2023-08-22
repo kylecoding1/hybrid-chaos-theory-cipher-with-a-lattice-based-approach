@@ -1,7 +1,7 @@
 # Hybrid Chaos-Lattice Cipher: A Lattice-Based Approach with Chaos Theory
 
 ## Introduction
-In the era of quantum computing, the landscape of cryptography is rapidly evolving. The Chaos-Lattice method, developed in our lab, is at the forefront of this evolution. This method ingeniously integrates chaos theory with lattice-based cryptography to forge a cryptographic solution that is not only innovative and efficient but also resistant to the threats posed by quantum computing. 
+
 
 ## Methodology
 
