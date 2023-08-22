@@ -35,8 +35,8 @@ A comprehensive set of stress tests was conducted to validate the performance an
 - **Differential Percentage: 99.3042%**: A high differential percentage between encrypted messages demonstrates that small changes in the input lead to significant changes in the output. This makes cryptanalysis more difficult.
 - **Entropy of Encrypted Messages: 7.7884 and 7.7734 bits**: High entropy values for the encrypted messages indicate that the characters are uniformly distributed. This makes it harder for attackers to find patterns, enhancing security.
 - **Estimated Key Entropy: 256.0 bits**: This shows that the key space is vast, making brute-force attacks infeasible. A 256-bit key size is considered secure against current cryptographic attacks.
-- **Key Generation Cycles: 9,655,600 cycles**: This measures the computational cost of key generation. While not extremely fast, it's within a range that can be considered practical for many applications.
-- **Encryption and Decryption Cycles**: These values (2,276,700 and 1,901,700 cycles, respectively) represent the computational cost for encrypting and decrypting messages. They are acceptable for many use-cases and highlight the efficiency of my encryption scheme.
+- **Key Generation Cycles: 9,655,600 cycles**: This measures the computational cost of key generation.
+- **Encryption and Decryption Cycles**: These values (2,276,700 and 1,901,700 cycles, respectively) represent the computational cost for encrypting and decrypting messages.
 - **Private Key Entropy: 32,768 bits (approximately)**: This high entropy of the private key further adds to the security of the cryptographic system, making it resilient against attacks that try to predict or guess the key.
 - **Entropy of Shared Secret Key: 256.0 bits**: The shared secret key's entropy shows that it's robust and secure, conforming to modern security standards.
 
