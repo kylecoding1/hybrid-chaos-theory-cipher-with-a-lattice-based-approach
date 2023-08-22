@@ -17,7 +17,7 @@ def hmac_sha3(key, message):
 def combined_chaos_map(x: float, y: float, z: float, r: float = 3.9, a: float = 1.4, b: float = 0.3) -> Tuple[float, float, float]:
     x_next = r * x * (1 - x)
     y_next = 1 - a * y**2 + b * x
-    z_next = z * (1 - y) # Example equation; you can modify this
+    z_next = z * (1 - y) 
     return x_next % 1, y_next % 1, z_next % 1
 
 
