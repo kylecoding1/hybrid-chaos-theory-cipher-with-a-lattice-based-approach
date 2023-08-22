@@ -10,7 +10,6 @@ In the quantum computing era, cryptographic methods must evolve to meet the new 
 ![2923f594-5512-44f3-b61d-1f5ed332bbe3](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/1ae7e2bf-9c93-4a19-8d19-22e6db28769a)
 
 
-
 Key Generation Cycles: 9,655,600
 
 Encryption (Encapsulation) Cycles: 2,276,700
@@ -21,17 +20,23 @@ Quantum Resistance: Leveraging SHA-3, a quantum-resistant hash function, ensures
 
 Chaos Map Vectorization: The combined chaos map vectorization integrates the logistic map with lattice-based cryptography, adding a layer of complexity that enhances security.
 
-Key Generation Efficiency: The model's key generation process was timed at 9,655,600 cycles, making it competitive with several Kyber implementations. The key entropy and private key entropy were also computed, providing insights into the cryptographic strength of the generated keys.
+Key Generation Efficiency: The model's key generation process was timed at 9,655,600 cycles, making it competitive with several Kyber implementations. 
 
 Encryption and Decryption Cycles: The encapsulation (encryption) and decapsulation (decryption) cycles were measured at 2,276,700 and 1,901,700, respectively. This highlights the model's capability to perform encryption and decryption tasks efficiently.
 
-Differential Analysis: A differential percentage of 99.30% was observed, indicating the cryptographic strength of the algorithm and its resistance to differential attacks.
+## Stress Testing
 
-Entropy Analysis: The entropies of the encrypted messages, shared secret key, and private key were computed. A high entropy value signifies the randomness and unpredictability of the cryptographic elements, reinforcing the model's security.
+Decryption Success: True
+Differential Percentage: 99.3042%
+Entropy of Encrypted Message 1: 7.7884 bits
+Entropy of Encrypted Message 2: 7.7734 bits
+Estimated Key Entropy: 256.0 bits
+Key Generation Cycles: 9,655,600 cycles
+Encryption Cycles (Encapsulation): 2,276,700 cycles
+Decryption Cycles (Decapsulation): 1,901,700 cycles
+Private Key Entropy: 32,768 bits (approximately)
+Entropy of Shared Secret Key: 256.0 bits
 
-Decryption Success: The decryption success was validated as True, confirming the model's functionality and integrity in encrypting and decrypting messages accurately.
-
-Stress Testing with Random Padding: Random padding was introduced to messages during encryption, adding variability to the tests and confirming the model's stability under different conditions.
 
  ## Conclusion
 The Chaos-Lattice method uniquely combines the mathematical complexity of lattice-based cryptography with the intriguing properties of chaos maps. The lattice part ensures quantum resilience, while the chaos map adds an additional layer of complexity and uniqueness to the encryption process. By carefully integrating these components, the Chaos-Lattice method aims to provide a fast and secure cryptographic system.
