@@ -60,21 +60,3 @@ The Chaos-Lattice method is a novel cryptographic approach that intertwines the 
 
 ## License
 MIT
-
-
-
-Key Generation Cycles: 9,655,600
-
-Encryption (Encapsulation) Cycles: 2,276,700
-
-Decryption (Decapsulation) Cycles: 1,901,700
-
-
-
-
-
-
- ## Conclusion
-The Chaos-Lattice method uniquely combines the mathematical complexity of lattice-based cryptography with the intriguing properties of chaos maps. The lattice part ensures quantum resilience, while the chaos map adds an additional layer of complexity and uniqueness to the encryption process. By carefully integrating these components, the Chaos-Lattice method aims to provide a fast and secure cryptographic system.
-## License 
-MIT
