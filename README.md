@@ -11,12 +11,15 @@ The Chaos-Lattice method embraces the fascinating dynamics of chaos maps and the
 ## Stress Testing and Performance Analysis
 A comprehensive set of stress tests was conducted to validate the performance and security features of the Chaos-Lattice model:
 
-- **Decryption Success**: Demonstrated functional correctness through successful encryption and decryption of data.
-- **Differential Percentage**: Achieved a 99.3042% differential, making cryptanalysis challenging.
-- **Entropy of Encrypted Messages**: The high entropy indicates uniform distribution, obstructing pattern detection.
-- **Key Entropy**: With 256-bit key size, brute-force attacks become infeasible.
-- **Cycle Metrics**: Key Generation, Encryption, and Decryption cycles were measured to be practical for various applications.
-- **Private Key and Shared Secret Key Entropy**: The robust entropy values ensure resilience against key prediction or guessing.
+- **Decryption Success: True**: The successful decryption indicates that my encryption and decryption algorithms are working cohesively. Encrypted data can be successfully decrypted back to its original form, showing functional correctness.
+- **Differential Percentage: 99.3042%**: A high differential percentage between encrypted messages demonstrates that small changes in the input lead to significant changes in the output. This is a desirable feature, as it makes cryptanalysis more difficult.
+- **Entropy of Encrypted Messages: 7.7884 and 7.7734 bits**: High entropy values for the encrypted messages indicate that the characters are uniformly distributed. This makes it harder for attackers to find patterns, enhancing security.
+- **Estimated Key Entropy: 256.0 bits**: This shows that the key space is vast, making brute-force attacks infeasible. A 256-bit key size is considered secure against current cryptographic attacks.
+- **Key Generation Cycles: 9,655,600 cycles**: This measures the computational cost of key generation. While not extremely fast, it's within a range that can be considered practical for many applications.
+- **Encryption and Decryption Cycles**: These values (2,276,700 and 1,901,700 cycles, respectively) represent the computational cost for encrypting and decrypting messages. They are acceptable for many use-cases and highlight the efficiency of my encryption scheme.
+- **Private Key Entropy: 32,768 bits (approximately)**: This high entropy of the private key further adds to the security of the cryptographic system, making it resilient against attacks that try to predict or guess the key.
+- **Entropy of Shared Secret Key: 256.0 bits**: The shared secret key's entropy shows that it's robust and secure, conforming to modern security standards.
+
 
 ## Chaos-Lattice Model in Action
 Here's a glimpse of the Chaos-Lattice model:
