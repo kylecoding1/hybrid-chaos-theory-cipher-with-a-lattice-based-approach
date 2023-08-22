@@ -16,25 +16,27 @@ Encryption (Encapsulation) Cycles: 2,276,700
 
 Decryption (Decapsulation) Cycles: 1,901,700
 
-Quantum Resistance: Leveraging SHA-3, a quantum-resistant hash function, ensures that the model is equipped to handle potential quantum threats.
-
-Chaos Map Vectorization: The combined chaos map vectorization integrates the logistic map with lattice-based cryptography, adding a layer of complexity that enhances security.
-
-Key Generation Efficiency: The model's key generation process was timed at 9,655,600 cycles, making it competitive with several Kyber implementations. 
-
-Encryption and Decryption Cycles: The encapsulation (encryption) and decapsulation (decryption) cycles were measured at 2,276,700 and 1,901,700, respectively. This highlights the model's capability to perform encryption and decryption tasks efficiently.
 
 ## Stress Testing
 
 Decryption Success: True
+
 Differential Percentage: 99.3042%
+
 Entropy of Encrypted Message 1: 7.7884 bits
+
 Entropy of Encrypted Message 2: 7.7734 bits
+
 Estimated Key Entropy: 256.0 bits
+
 Key Generation Cycles: 9,655,600 cycles
+
 Encryption Cycles (Encapsulation): 2,276,700 cycles
+
 Decryption Cycles (Decapsulation): 1,901,700 cycles
+
 Private Key Entropy: 32,768 bits (approximately)
+
 Entropy of Shared Secret Key: 256.0 bits
 
 
