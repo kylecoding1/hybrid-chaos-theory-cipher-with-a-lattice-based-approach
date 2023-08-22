@@ -10,29 +10,14 @@ The Chaos-Lattice cryptographic scheme consists of two main components: Chaos Th
 ### 1. **Chaos Theory**:
    Chaos theory is leveraged through a combined chaos map that incorporates three variables. The mathematical representation is as follows:
 
-   \[
-   \begin{align*}
-   x_{\text{next}} & = r \cdot x \cdot (1 - x) \\
-   y_{\text{next}} & = 1 - a \cdot y^2 + b \cdot x \\
-   z_{\text{next}} & = z \cdot (1 - y)
-   \end{align*}
-   \]
-
-   where \( r = 3.9 \), \( a = 1.4 \), and \( b = 0.3 \). The chaos map generates pseudorandom values that contribute to the encryption process.
+   ![image](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/790f507f-8c57-4595-ad80-124fdbf6ced7)
+   
+ The chaos map generates pseudorandom values that contribute to the encryption process.
 
 ### 2. **Lattice-Based Cryptography**:
    A lattice-based key generation method is employed, given by:
 
-   \[
-   \begin{align*}
-   s & = \text{random integers} \, \mod q \\
-   A & = \text{random integers} \, \mod q \\
-   e & = \text{normal distribution} \, \mod q \\
-   b & = (A \cdot s + e) \, \mod q
-   \end{align*}
-   \]
-
-   where \( n = 1024 \) is the dimension, and \( q = 4294967291 \) is a large prime number close to \( 2^{32} \).
+ ![image](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/325db451-0239-47cd-9d59-f3c0a1b7859c)
 
 ### 3. **Encryption and Decryption**:
    - **Encryption**:
