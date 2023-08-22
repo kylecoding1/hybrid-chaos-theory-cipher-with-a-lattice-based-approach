@@ -44,8 +44,10 @@ A comprehensive set of stress tests was conducted to validate the performance an
 ## Chaos-Lattice Model in Action
 Here's a glimpse of the Chaos-Lattice model:
 
-![3867694a-e2d3-4264-a809-7b6db0879f30 ](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/a6282542-3815-4785-ac9e-b4d44447b945)
+![image](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/563a4a1b-4060-4ac3-8932-92a02a096dc9)
 
+Kyber models : green 
+Chaos-Lattice(my model) : red
 
 ### Performance Metrics:
 - **Key Generation**: 9,655,600 cycles
@@ -53,7 +55,7 @@ Here's a glimpse of the Chaos-Lattice model:
 - **Decryption (Decapsulation)**: 1,901,700 cycles
 
 ## Conclusion
-The Chaos-Lattice method is not merely a theoretical concept; it is a groundbreaking cryptographic solution designed for the future. By harmonizing the mathematical intricacy of lattice-based cryptography with the unpredictability of chaos maps, we have crafted a system that is both fast and secure. As the quantum era dawns, the Chaos-Lattice method stands as a beacon of innovation, ready to meet new challenges.
+The Chaos-Lattice method is a novel cryptographic approach that intertwines the mathematical complexity of lattice-based cryptography with the dynamism of chaos maps. Although currently slower in speed compared to some models like Kyber, the Chaos-Lattice method offers a unique perspective and room for optimization. As work continues on refining and enhancing this method, it stands as an innovative response to the evolving cryptographic landscape.
 
 ## License
 MIT
