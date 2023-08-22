@@ -41,15 +41,6 @@ The Chaos-Lattice cryptographic scheme consists of two main components: Chaos Th
    - **Decryption**:
      Decryption reverses the encryption process by applying the chaos map in reverse, along with the private key and the shared secret key.
 
-### 4. **Additional Features**:
-   - **Entropy Calculation**:
-     Entropy is calculated to gauge the unpredictability and uniformity of the keys and messages.
-   - **Differential Analysis**:
-     The differential percentage is computed to assess how slight changes in input create significant differences in output.
-   - **Cycle Metrics**:
-     The computational cost for key generation, encryption, and decryption is measured in cycles.
-
-The Chaos-Lattice method is meticulously designed, weaving together chaos theory and lattice-based cryptography to create a resilient, secure, and efficient cryptographic solution suitable for the quantum computing era.
 
 
 ## Stress Testing and Performance Analysis
