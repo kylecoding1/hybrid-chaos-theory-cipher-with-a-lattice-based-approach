@@ -4,9 +4,53 @@
 In the era of quantum computing, the landscape of cryptography is rapidly evolving. The Chaos-Lattice method, developed in our lab, is at the forefront of this evolution. This method ingeniously integrates chaos theory with lattice-based cryptography to forge a cryptographic solution that is not only innovative and efficient but also resistant to the threats posed by quantum computing. 
 
 ## Methodology
-The Chaos-Lattice method embraces the fascinating dynamics of chaos maps and the quantum resilience of lattice structures to construct a robust and novel cryptographic system.
 
-![image](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/32471296-380a-4889-8aed-89e63376dfb5)
+The Chaos-Lattice cryptographic scheme consists of two main components: Chaos Theory and Lattice-Based Cryptography. Here's how these elements are intertwined :
+
+### 1. **Chaos Theory**:
+   Chaos theory is leveraged through a combined chaos map that incorporates three variables. The mathematical representation is as follows:
+
+   \[
+   \begin{align*}
+   x_{\text{next}} & = r \cdot x \cdot (1 - x) \\
+   y_{\text{next}} & = 1 - a \cdot y^2 + b \cdot x \\
+   z_{\text{next}} & = z \cdot (1 - y)
+   \end{align*}
+   \]
+
+   where \( r = 3.9 \), \( a = 1.4 \), and \( b = 0.3 \). The chaos map generates pseudorandom values that contribute to the encryption process.
+
+### 2. **Lattice-Based Cryptography**:
+   A lattice-based key generation method is employed, given by:
+
+   \[
+   \begin{align*}
+   s & = \text{random integers} \, \mod q \\
+   A & = \text{random integers} \, \mod q \\
+   e & = \text{normal distribution} \, \mod q \\
+   b & = (A \cdot s + e) \, \mod q
+   \end{align*}
+   \]
+
+   where \( n = 1024 \) is the dimension, and \( q = 4294967291 \) is a large prime number close to \( 2^{32} \).
+
+### 3. **Encryption and Decryption**:
+   - **Encryption**:
+     The encryption process combines the chaos map with the public key (A, b) and a shared secret key. The chaos map is iteratively applied to each character of the message, and a MAC is computed using HMAC-SHA3.
+
+   - **Decryption**:
+     Decryption reverses the encryption process by applying the chaos map in reverse, along with the private key and the shared secret key.
+
+### 4. **Additional Features**:
+   - **Entropy Calculation**:
+     Entropy is calculated to gauge the unpredictability and uniformity of the keys and messages.
+   - **Differential Analysis**:
+     The differential percentage is computed to assess how slight changes in input create significant differences in output.
+   - **Cycle Metrics**:
+     The computational cost for key generation, encryption, and decryption is measured in cycles.
+
+The Chaos-Lattice method is meticulously designed, weaving together chaos theory and lattice-based cryptography to create a resilient, secure, and efficient cryptographic solution suitable for the quantum computing era.
+
 
 ## Stress Testing and Performance Analysis
 A comprehensive set of stress tests was conducted to validate the performance and security features of the Chaos-Lattice model:
