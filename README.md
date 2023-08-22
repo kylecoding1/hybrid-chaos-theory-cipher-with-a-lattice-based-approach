@@ -32,7 +32,7 @@ The Chaos-Lattice cryptographic scheme consists of two main components: Chaos Th
 A comprehensive set of stress tests was conducted to validate the performance and security features of the Chaos-Lattice model:
 
 - **Decryption Success: True**: The successful decryption indicates that my encryption and decryption algorithms are working cohesively. Encrypted data can be successfully decrypted back to its original form, showing functional correctness.
-- **Differential Percentage: 99.3042%**: A high differential percentage between encrypted messages demonstrates that small changes in the input lead to significant changes in the output. This is a desirable feature, as it makes cryptanalysis more difficult.
+- **Differential Percentage: 99.3042%**: A high differential percentage between encrypted messages demonstrates that small changes in the input lead to significant changes in the output. This makes cryptanalysis more difficult.
 - **Entropy of Encrypted Messages: 7.7884 and 7.7734 bits**: High entropy values for the encrypted messages indicate that the characters are uniformly distributed. This makes it harder for attackers to find patterns, enhancing security.
 - **Estimated Key Entropy: 256.0 bits**: This shows that the key space is vast, making brute-force attacks infeasible. A 256-bit key size is considered secure against current cryptographic attacks.
 - **Key Generation Cycles: 9,655,600 cycles**: This measures the computational cost of key generation. While not extremely fast, it's within a range that can be considered practical for many applications.
