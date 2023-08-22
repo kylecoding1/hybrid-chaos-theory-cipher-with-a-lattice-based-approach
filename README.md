@@ -47,6 +47,7 @@ Here's a glimpse of the Chaos-Lattice model:
 ![image](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/563a4a1b-4060-4ac3-8932-92a02a096dc9)
 
 Kyber models : green 
+
 Chaos-Lattice(my model) : red
 
 ### Performance Metrics:
