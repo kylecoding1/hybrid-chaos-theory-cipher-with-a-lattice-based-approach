@@ -44,7 +44,8 @@ A comprehensive set of stress tests was conducted to validate the performance an
 ## Chaos-Lattice Model in Action
 Here's a glimpse of the Chaos-Lattice model:
 
-![2923f594-5512-44f3-b61d-1f5ed332bbe3](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/1ae7e2bf-9c93-4a19-8d19-22e6db28769a)
+![3867694a-e2d3-4264-a809-7b6db0879f30 ](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/a6282542-3815-4785-ac9e-b4d44447b945)
+
 
 ### Performance Metrics:
 - **Key Generation**: 9,655,600 cycles
