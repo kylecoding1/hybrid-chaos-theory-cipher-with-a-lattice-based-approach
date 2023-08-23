@@ -16,7 +16,7 @@ def hmac_sha3(key, message):
 def combined_chaos_map(x: float, y: float, z: float, r: float = 3.9, a: float = 1.4, b: float = 0.3) -> Tuple[float, float, float]:
     x_next = r * x * (1 - x)
     y_next = 1 - a * y**2 + b * x
-    z_next = z * (1 - y) 
+    z_next = z * (1 - y)
     return x_next % 1, y_next % 1, z_next % 1
 
 # Dynamic Key Management
@@ -107,7 +107,6 @@ def logistic_lattice_chaos_decapsulation(encrypted_message, u, private_key, shar
     if computed_mac != received_mac:
         raise Exception("MAC verification failed")
     return decrypted_message_with_padding[1000:]
-
 def calculate_differential(string1: str, string2: str) -> float:
     differences = sum(c1 != c2 for c1, c2 in zip(string1, string2))
     return (differences / len(string1)) * 100
