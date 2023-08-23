@@ -68,8 +68,5 @@ The Chaos-Lattice Cryptography System is a novel and complex cryptographic schem
 ### Comparison-of-Key-Evolution--Chaos-Lattice-vs-Kyber- -AES
 ![Comparison of Key Evolution](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/8404f5c2-d38c-4c9b-afe9-05fe9df31803)
 
-### Chaos-Lattice Key Evolution Over Iterations
-![Chaos-Lattice Key Evolution](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/c0b97836-ac35-48ce-8f9f-6f8bc8931a4b)
-
 ### Chaos_Lattice_Entropy
 ![Chaos_Lattice_Entropy](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/f3111a2a-d278-4c81-a51a-56e49e4d0150)
