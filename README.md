@@ -4,6 +4,7 @@
 - [Overview](#overview)
 - [Key Components](#key-components)
 - [Core Functions](#core-functions)
+- [Testing](Testing)
 - [Mathematical Details](#mathematical-details)
 - [Performance Metrics](#Performance-Metrics)
 - [Visualizations](#visualizations)
@@ -41,6 +42,8 @@ The Chaos-Lattice Cryptography System is an innovative and complex cryptographic
 
 **Signature and Verification**
 - Hash-based signing and verification are implemented using SHA-3 and HMAC.
+
+## Testing
 
 **Entropy Calculation**
 - Entropy is used to quantify the randomness and uncertainty within the encrypted message. It's calculated using Shannon's entropy formula.
