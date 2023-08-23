@@ -55,25 +55,18 @@ The Chaos-Lattice Cryptography System is an innovative and complex cryptographic
 - Key space size: 340282366920938463463374607431768211456
 - Time to perform exhaustive search (years): 1.0790283070806015e+22
 
-**Performance Metrics**
+
+**Randomness Testing**
+- The sequence passed the monobit test, showing that the encrypted message has a balanced number of 0s and 1s.
+
+## Performance Metrics
+**Cycle Counts**
 - Key Generation Time (seconds): 0.00010380000458098948
 - Encryption Time (seconds): 0.00035390001721680164
 - Decryption Time (seconds): 0.00021920001017861068
 - Key Generation Cycles: 311400.01374296844
 - Encryption Cycles: 1061700.051650405
 - Decryption Cycles: 657600.030535832
-
-**Randomness Testing**
-- The sequence passed the monobit test, indicating that the encrypted message has a balanced number of 0s and 1s.
-
-## Performance Metrics
-**Cycle Counts**
-- Key Generation Cycles: 311400.01374296844
-- Encryption Cycles: 1061700.051650405
-- Decryption Cycles: 657600.030535832
-
-**Entropy Encapsulation**
-- 7.091466437621499
 
 ## Visualizations
 ### Comparison of Execution Times
