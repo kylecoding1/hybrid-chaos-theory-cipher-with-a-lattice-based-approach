@@ -53,7 +53,7 @@ The Chaos-Lattice Cryptography System is an innovative and complex cryptographic
 
 ## Mathematical Details
 **Combined Chaos Map**
-- The combined chaos map evolves three variables (x, y, z) according to:
+- The combined chaos map evolves three variables (x, y, z):
   - x_next = r * x * (1 - x)
   - y_next = 1 - a * y^2 + b * x
   - z_next = z * (1 - y)
