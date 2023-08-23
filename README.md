@@ -70,8 +70,12 @@ The Chaos-Lattice Cryptography System is a novel and complex cryptographic schem
 
 ## Visualizations
 
+## Visualizations
+
 ### Comparison of Execution Times
 ![Entropy Calculation](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/9d3d884d-8304-49ba-ad59-389e7cd39897)
+   This chart illustrates the execution times of various cryptographic operations, including key generation, encryption, and decryption. The x-axis represents the operation type, and the y-axis represents the time taken in seconds or CPU cycles. The comparison provides insights into the performance of the Chaos-Lattice system.
 
 ### Comparison of Key Evolution: Chaos-Lattice vs Kyber & AES
 ![Comparison of Key Evolution](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/8404f5c2-d38c-4c9b-afe9-05fe9df31803)
+   This chart showcases the evolution of cryptographic keys over iterations for the Chaos-Lattice system, Kyber, and AES algorithms. The x-axis represents the iterations, and the y-axis represents the properties of the keys. The comparison offers insights into how the Chaos-Lattice key evolution differs from other algorithms.
