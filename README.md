@@ -18,7 +18,7 @@ The Chaos-Lattice Cryptography System is an innovative and complex cryptographic
 ### Installation
 
 Clone the Repository:
-git clone https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach.git
+git clone git@github.com:kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach.git
 
 Make sure the following libraries are installed in your Python environment:
 
