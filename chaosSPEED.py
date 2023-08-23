@@ -323,7 +323,7 @@ plt.legend()
 plt.tight_layout()
 
 # Save the plot as an image
-plt.savefig('SPEED_execution_times_plot.png')
+plt.savefig('chaosSPEED_execution_times_plot.png')
 
 # Print a message indicating that the plot has been saved
-print("Plot saved as 'SPEED_execution_times_plot.png'")
+print("Plot saved as 'chaosSPEED_execution_times_plot.png'")
