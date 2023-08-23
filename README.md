@@ -47,42 +47,36 @@ The Chaos-Lattice Cryptography System is an innovative and complex cryptographic
 ## Testing
 **Entropy Calculation**
 - Entropy is used to quantify the randomness and uncertainty within the encrypted message. It's calculated using Shannon's entropy formula.
+- Original Message Entropy: 1.2987949406953985
+- Encrypted Message Entropy: 7.091466437621499
+- Decrypted Message Entropy: 1.2987949406953985
+
+**Brute-force Analysis**
+- Key space size: 340282366920938463463374607431768211456
+- Time to perform exhaustive search (years): 1.0790283070806015e+22
 
 **Performance Metrics**
-- Execution times for key generation, encryption, and decryption are measured in both seconds and CPU cycles.
+- Key Generation Time (seconds): 0.00010380000458098948
+- Encryption Time (seconds): 0.00035390001721680164
+- Decryption Time (seconds): 0.00021920001017861068
+- Key Generation Cycles: 311400.01374296844
+- Encryption Cycles: 1061700.051650405
+- Decryption Cycles: 657600.030535832
 
-**Visualization and Comparison**
-- The application includes a series of plots to visualize and compare the Chaos-Lattice system with other cryptographic algorithms like AES and Kyber.
+**Randomness Testing**
+- The sequence passed the monobit test, indicating that the encrypted message has a balanced number of 0s and 1s.
 
-## Mathematical Details
-**Combined Chaos Map**
-- The combined chaos map evolves three variables (x, y, z):
-  - x_next = r * x * (1 - x)
-  - y_next = 1 - a * y^2 + b * x
-  - z_next = z * (1 - y)
-
-**Ring-LWE**
-- The Ring-LWE problem is defined over polynomial rings and is based on the hardness of finding solutions to noisy linear equations. It's a promising candidate for post-quantum cryptography.
-
-**Entropy Calculation**
-- Entropy H is calculated using the formula:
-  - H = -∑(p_i * log2(p_i))
-  where p_i are the probabilities of unique characters in the message.
-
-# Performance Metrics
-
+## Performance Metrics
 **Cycle Counts**
-- key_generation_cycles = 305400.0117117539
-- encryption_cycles = 1220999.998622574
-- decryption_cycles = 881399.9884296209
+- Key Generation Cycles: 311400.01374296844
+- Encryption Cycles: 1061700.051650405
+- Decryption Cycles: 657600.030535832
 
 **Entropy Encapsulation**
-- 7.120012603669693
-
+- 7.091466437621499
 
 ## Visualizations
-
-### Comparison of Execution Times.
+### Comparison of Execution Times
 ![Screenshot 2023-08-23 120100](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/0eeb8854-ee33-4e59-9734-97fa8e4de791)
    This chart illustrates the execution times of various cryptographic operations, including key generation, encryption, and decryption. The x-axis represents the operation type, and the y-axis represents the time taken in seconds or CPU cycles. The comparison provides insights into the performance of Chaos-Lattice/Kyber systems.
 
