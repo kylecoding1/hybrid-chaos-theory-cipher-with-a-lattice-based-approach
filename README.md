@@ -1,62 +1,107 @@
-# Hybrid Chaos-Lattice Cipher: A Lattice-Based Approach with Chaos Theory
+# Chaos-Lattice Cryptography System
 
-## Introduction
-In an era where quantum computing poses new challenges to the security landscape, a fresh perspective is needed to fortify our cryptographic defenses. Enter the Chaos-Lattice method—a pioneering cryptographic scheme that blends the unpredictability of chaos theory with the robustness of lattice-based cryptography. Designed to be innovative yet adaptable, Chaos-Lattice offers a unique approach, setting the stage for a new wave of cryptographic solutions.
+**Table of Contents**
+- [Overview](#overview)
+- [Key Components](#key-components)
+- [Core Functions](#core-functions)
+- [Mathematical Details](#mathematical-details)
+- [Testing](#Testing)
+- [Performance Metrics](#Performance-Metrics)
+- [Visualizations](#visualizations)
+- [Conclusion](#conclusion)
+- [License](#License)
 
-## Methodology
+## Overview
+The Chaos-Lattice Cryptography System is an innovative and complex cryptographic application that combines the principles of chaotic dynamics, lattice-based cryptography, and cryptographic hash functions. It introduces a quantum-resistant method for secure communication, utilizing various mathematical concepts to ensure high levels of security, complexity, and unpredictability.
 
-The Chaos-Lattice cryptographic scheme consists of two main components: Chaos Theory and Lattice-Based Cryptography. Here's how these elements are intertwined :
+## Key Components
+1. **Chaotic Maps**
+   - Chaos theory is applied using a combined chaos map, which iteratively evolves three variables (x, y, z) according to specific equations. These chaotic dynamics introduce high complexity and sensitivity to initial conditions.
 
-### 1. **Chaos Theory**:
-   Chaos theory is leveraged through a combined chaos map that incorporates three variables. The mathematical representation is as follows:
+2. **Ring-LWE (Ring Learning with Errors)**
+   - Ring-LWE is a lattice-based cryptographic problem that forms the basis of the key generation process. It provides security based on the hardness of finding short vectors in a lattice.
 
-   ![image](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/790f507f-8c57-4595-ad80-124fdbf6ced7)
-   
- The chaos map generates pseudorandom values that contribute to the encryption process.
+3. **Dynamic Key Management**
+   - An evolving key mechanism is implemented to enhance unpredictability. The key is evolved using the combined chaos map, making it highly sensitive to the initial shared secret.
 
-### 2. **Lattice-Based Cryptography**:
-   A lattice-based key generation method is employed, given by:
+4. **Hash Functions and HMAC**
+   - SHA-3 (Secure Hash Algorithm 3) and HMAC (Hash-based Message Authentication Code) are employed for authentication and integrity verification.
 
- ![image](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/325db451-0239-47cd-9d59-f3c0a1b7859c)
+5. **FFT-based Polynomial Arithmetic**
+   - Fast Fourier Transform (FFT) is used for efficient polynomial multiplication in the Ring-LWE operations.
 
-### 3. **Encryption and Decryption**:
-   - **Encryption**:
-     The encryption process combines the chaos map with the public key (A, b) and a shared secret key. The chaos map is iteratively applied to each character of the message, and a MAC is computed using HMAC-SHA3.
+## Core Functions
+**Key Generation**
+- Two different key generation methods are implemented:
+  - Lattice Key Generation: Utilizes Ring-LWE to generate a public-private key pair.
+  - Hash Key Generation: Generates a 256-bit secret key.
 
-   - **Decryption**:
-     Decryption reverses the encryption process by applying the chaos map in reverse, along with the private key and the shared secret key.
+**Encryption and Decryption**
+- The application introduces a novel encryption and decryption scheme that combines logistic maps, lattice-based cryptography, and hash functions. It includes:
+  - Chaos-based encryption: Encrypts the message using chaotic dynamics.
+  - Logistic-Lattice encapsulation: Combines chaotic dynamics with lattice-based encryption.
+
+**Signature and Verification**
+- Hash-based signing and verification are implemented using SHA-3 and HMAC.
+
+## Mathematical Details
+**Combined Chaos Map**
+- The combined chaos map evolves three variables (x, y, z):
+  - x_next = r * x * (1 - x)
+  - y_next = 1 - a * y^2 + b * x
+  - z_next = z * (1 - y)
+  These equations are iteratively applied to create chaotic dynamics, leading to high sensitivity to initial conditions and complex behavior.
+
+**Ring-LWE**
+- The Ring-LWE problem is defined over polynomial rings and is based on the hardness of finding solutions to noisy linear equations. It's a promising candidate for post-quantum cryptography, providing security under quantum attacks.
+
+**Entropy Calculation**
+- Entropy H is calculated using the formula:
+  - H = -sum(p_i * log2(p_i))
+  where p_i are the probabilities of unique characters in the message. It quantifies the randomness and unpredictability of the information.
+
+**Polynomial Arithmetic**
+- FFT-based polynomial arithmetic is used for efficient polynomial operations such as addition, subtraction, multiplication, and reduction. The FFT helps in reducing the computational complexity for polynomial multiplication.
+
+**Dynamic Key Evolution**
+- The shared secret key is evolved using the combined chaos map, with an iterative process that utilizes chaotic dynamics. This introduces additional complexity and unpredictability into the key management process.
 
 
+## Testing
+**Entropy Calculation**
+- Entropy is used to quantify the randomness and uncertainty within the encrypted message. It's calculated using Shannon's entropy formula.
+- Original Message Entropy: 1.2987949406953985
+- Encrypted Message Entropy: 7.091466437621499
+- Decrypted Message Entropy: 1.2987949406953985
 
-## Stress Testing and Performance Analysis
-A comprehensive set of stress tests was conducted to validate the performance and security features of the Chaos-Lattice model:
-
-- **Decryption Success: True**: The successful decryption indicates that my encryption and decryption algorithms are working cohesively. Encrypted data can be successfully decrypted back to its original form, showing functional correctness.
-- **Differential Percentage: 99.3042%**: A high differential percentage between encrypted messages demonstrates that small changes in the input lead to significant changes in the output. This makes cryptanalysis more difficult.
-- **Entropy of Encrypted Messages: 7.7884 and 7.7734 bits**: High entropy values for the encrypted messages indicate that the characters are uniformly distributed. This makes it harder for attackers to find patterns, enhancing security.
-- **Estimated Key Entropy: 256.0 bits**: This shows that the key space is vast, making brute-force attacks infeasible. A 256-bit key size is considered secure against current cryptographic attacks.
-- **Key Generation Cycles: 9,655,600 cycles**: This measures the computational cost of key generation.
-- **Encryption and Decryption Cycles**: These values (2,276,700 and 1,901,700 cycles, respectively) represent the computational cost for encrypting and decrypting messages.
-- **Private Key Entropy: 32,768 bits (approximately)**: This high entropy of the private key further adds to the security of the cryptographic system, making it resilient against attacks that try to predict or guess the key.
-- **Entropy of Shared Secret Key: 256.0 bits**: The shared secret key's entropy shows that it's robust and secure, conforming to modern security standards.
+**Brute-force Analysis**
+- Key space size: 340282366920938463463374607431768211456
+- Time to perform exhaustive search (years): 1.0790283070806015e+22
 
 
-## Chaos-Lattice Model in Action
-Here's a glimpse of the Chaos-Lattice model:
+**Randomness Testing**
+- The sequence passed the monobit test, showing that the encrypted message has a balanced number of 0s and 1s.
 
-![image](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/563a4a1b-4060-4ac3-8932-92a02a096dc9)
+## Performance Metrics
+**Cycle Counts**
+- Key Generation Time (seconds): 0.00010380000458098948
+- Encryption Time (seconds): 0.00035390001721680164
+- Decryption Time (seconds): 0.00021920001017861068
+- Key Generation Cycles: 311400.01374296844
+- Encryption Cycles: 1061700.051650405
+- Decryption Cycles: 657600.030535832
 
-Kyber models : green 
+## Visualizations
+### Comparison of Execution Times
+![Screenshot 2023-08-23 113443](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/28042582-425f-456d-920e-355454d38dca)
+   This chart illustrates the execution times of various cryptographic operations, including key generation, encryption, and decryption. The x-axis represents the operation type, and the y-axis represents the time taken in seconds or CPU cycles. The comparison provides insights into the performance of Chaos-Lattice/Kyber systems.
 
-Chaos-Lattice(my model) : red
-
-### Performance Metrics:
-- **Key Generation**: 9,655,600 cycles
-- **Encryption (Encapsulation)**: 2,276,700 cycles
-- **Decryption (Decapsulation)**: 1,901,700 cycles
+### Comparison of Key Evolution: Chaos-Lattice vs Kyber & AES
+![Comparison-of-Key-Evolution--Chaos-Lattice-vs-Kyber- -AES](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/d591c487-7f39-4b2f-9d03-36e4b2e812de)
+The key evolution graph illustrates the dynamic nature of the Chaos-Lattice system compared to the static nature of Kyber and AES. Dynamic key evolution can enhance security by making it more difficult for an attacker to predict or find a pattern in the key sequence. This visual representation allows you to understand how keys change over iterations and can give insights into the robustness of the Chaos-Lattice system against certain types of attacks.
 
 ## Conclusion
-The Chaos-Lattice method is a novel cryptographic approach that intertwines the mathematical complexity of lattice-based cryptography with the dynamism of chaos maps. Although currently slower in speed compared to some models like Kyber, the Chaos-Lattice method offers a unique perspective and room for optimization. As work continues on refining and enhancing this method, it stands as an innovative response to the evolving cryptographic landscape.
+The Chaos-Lattice Cryptography System is a novel and complex cryptographic scheme that offers potential advantages in terms of complexity, unpredictability, and quantum resistance. By leveraging chaotic dynamics, lattice-based cryptography, and cryptographic hash functions, it introduces a robust and multifaceted approach to secure communication.
 
 ## License
 MIT
