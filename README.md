@@ -5,8 +5,8 @@
 - [Key Components](#key-components)
 - [Core Functions](#core-functions)
 - [Mathematical Details](#mathematical-details)
-- [Conclusion](#conclusion)
 - [Visualizations](#visualizations)
+- [Conclusion](#conclusion)
 
 ## Overview
 The Chaos-Lattice Cryptography System is an innovative and complex cryptographic application that combines the principles of chaotic dynamics, lattice-based cryptography, and cryptographic hash functions. It introduces a quantum-resistant method for secure communication, utilizing various mathematical concepts to ensure high levels of security, complexity, and unpredictability.
@@ -65,11 +65,6 @@ The Chaos-Lattice Cryptography System is an innovative and complex cryptographic
   - H = -∑(p_i * log2(p_i))
   where p_i are the probabilities of unique characters in the message.
 
-## Conclusion
-The Chaos-Lattice Cryptography System is a novel and complex cryptographic scheme that offers potential advantages in terms of complexity, unpredictability, and quantum resistance. By leveraging chaotic dynamics, lattice-based cryptography, and cryptographic hash functions, it introduces a robust and multifaceted approach to secure communication.
-
-## Visualizations
-
 ## Visualizations
 
 ### Comparison of Execution Times
@@ -79,3 +74,6 @@ The Chaos-Lattice Cryptography System is a novel and complex cryptographic schem
 ### Comparison of Key Evolution: Chaos-Lattice vs Kyber & AES
 ![Comparison of Key Evolution](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/8404f5c2-d38c-4c9b-afe9-05fe9df31803)
    This chart showcases the evolution of cryptographic keys over iterations for the Chaos-Lattice system, Kyber, and AES algorithms. The x-axis represents the iterations, and the y-axis represents the properties of the keys. The comparison offers insights into how the Chaos-Lattice key evolution differs from other algorithms.
+
+## Conclusion
+The Chaos-Lattice Cryptography System is a novel and complex cryptographic scheme that offers potential advantages in terms of complexity, unpredictability, and quantum resistance. By leveraging chaotic dynamics, lattice-based cryptography, and cryptographic hash functions, it introduces a robust and multifaceted approach to secure communication.
