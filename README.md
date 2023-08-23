@@ -73,6 +73,9 @@ The Chaos-Lattice Cryptography System is an innovative and complex cryptographic
 - encryption_cycles = 1220999.998622574
 - decryption_cycles = 881399.9884296209
 
+**Entropy Encapsulation**
+- 7.120012603669693
+
 
 ## Visualizations
 
