@@ -9,6 +9,7 @@
 - [Performance Metrics](#Performance-Metrics)
 - [Visualizations](#visualizations)
 - [Conclusion](#conclusion)
+- [License](#License)
 
 ## Overview
 The Chaos-Lattice Cryptography System is an innovative and complex cryptographic application that combines the principles of chaotic dynamics, lattice-based cryptography, and cryptographic hash functions. It introduces a quantum-resistant method for secure communication, utilizing various mathematical concepts to ensure high levels of security, complexity, and unpredictability.
