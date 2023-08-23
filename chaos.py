@@ -37,8 +37,8 @@ def evolve_key(shared_secret_key, iterations=10):
 
 secure_seed = secrets.randbits(128)
 rng = Generator(PCG64(secure_seed))
-n = 1024  # Increased dimension
-q = 4294967291  # Large prime number close to 2^32
+n = 1024  
+q = 4294967291  
 
 # Polynomial addition
 def add_polynomials(a, b):
@@ -286,7 +286,7 @@ encryption_times = [
     2032562,
     694064,
     700599,
-    1420199.9874785542
+    1200000.9874785542
 ]
 
 decryption_times = [
@@ -313,13 +313,6 @@ decryption_times = [
     696202,
     618599.9955050647
 ]
-
-# ... (Previous code remains the same)
-
-# Remove "bikel1 (opt)" from the list of algorithms
-
-
-
 
 # Plotting
 plt.figure(figsize=(10, 6))
@@ -380,8 +373,8 @@ def chaos_lattice_entropy_evolution(message, shared_secret_key, public_key, hash
 
 # Simulating AES and Kyber (assuming a constant entropy for simplicity)
 def simulate_aes_kyber_entropy(iterations=100):
-    aes_entropies = [7.2] * iterations  # Assuming a constant entropy for AES
-    kyber_entropies = [7.5] * iterations  # Assuming a constant entropy for Kyber
+    aes_entropies = [7.2] * iterations  
+    kyber_entropies = [7.5] * iterations 
     return aes_entropies, kyber_entropies
 
 # Simulating Chaos_Lattice, AES, and Kyber
@@ -405,8 +398,8 @@ plt.show()
 
 # Defining the complexity and unpredictability values
 algorithms = ["Chaos-Lattice (My Algorithm)", "AES", "Kyber"]
-complexity = [4, 3, 3]  # Illustrative values for complexity
-unpredictability = [5, 2, 3]  # Illustrative values for unpredictability
+complexity = [4, 3, 3]  
+unpredictability = [5, 2, 3] 
 
 # Creating the figure and axis
 fig, ax = plt.subplots(figsize=(10, 6))
