@@ -74,9 +74,6 @@ The Chaos-Lattice Cryptography System is an innovative and complex cryptographic
 - decryption_cycles = 881399.9884296209
 
 
-# You can store these values in variables and use them in your code as needed.
-
-
 ## Visualizations
 
 ### Comparison of Execution Times
