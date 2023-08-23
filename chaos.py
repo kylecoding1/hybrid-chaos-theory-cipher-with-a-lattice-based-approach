@@ -204,6 +204,16 @@ print("Key Generation Cycles:", keygen_cycles)
 print("Encryption Cycles:", encryption_cycles)
 print("Decryption Cycles:", decryption_cycles)
 
+
+print("Original Message:", message_to_encrypt)
+print("Encrypted Message:", encrypted_message)
+print("Decrypted Message:", decrypted_message)
+
+if message_to_encrypt == decrypted_message:
+    print("Decryption was successful! Original and decrypted messages are the same.")
+else:
+    print("Decryption failed! Original and decrypted messages are different.")
+
 algorithms = [
     "bikel1 (m4f)",
     "bikel1 (opt)",
@@ -327,3 +337,95 @@ plt.savefig('chaos_execution_times_plot.png')
 
 # Print a message indicating that the plot has been saved
 print("Plot saved as 'chaos_execution_times_plot.png'")
+
+def plot_key_evolution(initial_key, iterations=50):
+    # Chaos-Lattice Key Evolution
+    chaos_keys = [initial_key]
+    for _ in range(iterations):
+        key = evolve_key(chaos_keys[-1])
+        chaos_keys.append(key)
+    chaos_keys_int = [int.from_bytes(key, byteorder='big') for key in chaos_keys]
+
+    # Kyber and AES (Static Keys)
+    kyber_key = secrets.token_bytes(16)
+    aes_key = secrets.token_bytes(16)
+    kyber_keys_int = [int.from_bytes(kyber_key, byteorder='big')] * (iterations + 1)
+    aes_keys_int = [int.from_bytes(aes_key, byteorder='big')] * (iterations + 1)
+
+    plt.figure(figsize=(10, 6))
+    plt.plot(chaos_keys_int, marker='o', label="Chaos-Lattice Dynamic Key Evolution (my model)")
+    plt.plot(kyber_keys_int, marker='x', linestyle='--', label="Kyber Static Key")
+    plt.plot(aes_keys_int, marker='s', linestyle='--', label="AES Static Key")
+    plt.xlabel('Iteration')
+    plt.ylabel('Key Value')
+    plt.title('Comparison of Key Evolution: Chaos-Lattice vs Kyber & AES')
+    plt.legend()
+    plt.show()
+
+initial_key = secrets.token_bytes(16)  # 128-bit initial key
+plot_key_evolution(initial_key)
+
+# Chaos_Lattice entropy evolution
+def chaos_lattice_entropy_evolution(message, shared_secret_key, public_key, hash_secret_key, iterations=100):
+    entropies = []
+    for _ in range(iterations):
+        encrypted_message, _, _, _, _ = logistic_lattice_chaos_encapsulation(
+            message, public_key, shared_secret_key, hash_secret_key
+        )
+        entropy = calculate_entropy(encrypted_message)
+        entropies.append(entropy)
+        # Evolve shared secret key
+        shared_secret_key = evolve_key(shared_secret_key)
+    return entropies
+
+# Simulating AES and Kyber (assuming a constant entropy for simplicity)
+def simulate_aes_kyber_entropy(iterations=100):
+    aes_entropies = [7.2] * iterations  # Assuming a constant entropy for AES
+    kyber_entropies = [7.5] * iterations  # Assuming a constant entropy for Kyber
+    return aes_entropies, kyber_entropies
+
+# Simulating Chaos_Lattice, AES, and Kyber
+iterations = 100
+message = "test message"
+shared_secret_key = secrets.token_bytes(16)
+public_key, _ = lattice_keygen()
+hash_secret_key = secrets.token_bytes(32)
+
+chaos_lattice_entropies = chaos_lattice_entropy_evolution(message, shared_secret_key, public_key, hash_secret_key, iterations)
+aes_entropies, kyber_entropies = simulate_aes_kyber_entropy(iterations)
+
+plt.plot(chaos_lattice_entropies, label='Chaos_Lattice Entropy')
+plt.plot(aes_entropies, label='AES Entropy')
+plt.plot(kyber_entropies, label='Kyber Entropy')
+plt.xlabel('Iterations')
+plt.ylabel('Entropy')
+plt.title('Entropy Evolution Comparison')
+plt.legend()
+plt.show()
+
+# Defining the complexity and unpredictability values
+algorithms = ["Chaos-Lattice (My Algorithm)", "AES", "Kyber"]
+complexity = [4, 3, 3]  # Illustrative values for complexity
+unpredictability = [5, 2, 3]  # Illustrative values for unpredictability
+
+# Creating the figure and axis
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# Plotting the bars for complexity and unpredictability
+bar_width = 0.35
+index = range(len(algorithms))
+bar1 = plt.bar(index, complexity, bar_width, label='Complexity', alpha=0.7)
+bar2 = plt.bar(index, unpredictability, bar_width, label='Unpredictability', alpha=0.7, bottom=complexity)
+
+# Adding labels and title
+plt.xlabel('Algorithms')
+plt.ylabel('Score')
+plt.title('Complexity and Unpredictability Comparison')
+plt.xticks(index, algorithms)
+plt.legend()
+
+# Showing the plot
+plt.tight_layout()
+plt.show()
+
+
