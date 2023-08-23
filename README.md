@@ -62,7 +62,7 @@ The Chaos-Lattice Cryptography System is a novel and complex cryptographic schem
 
 ## Visualizations
 
-### Entropy Calculation Example
+### Comparison of Execution Times
 ![Entropy Calculation](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/9d3d884d-8304-49ba-ad59-389e7cd39897)
 
 ### Comparison-of-Key-Evolution--Chaos-Lattice-vs-Kyber- -AES
