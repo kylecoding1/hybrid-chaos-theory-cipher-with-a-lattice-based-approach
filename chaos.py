@@ -11,6 +11,7 @@ import random
 from collections import Counter
 from time import perf_counter
 import matplotlib.pyplot as plt
+from scipy.stats import norm
 
 # Quantum-resistant hash function (SHA-3)
 def hmac_sha3(key, message):
@@ -141,6 +142,47 @@ def calculate_entropy(message):
     probabilities = [freq / len(message) for _, freq in Counter(message).items()]
     return -sum(p * math.log2(p) for p in probabilities)
 
+
+
+def brute_force_analysis(key_size_bits):
+    key_space_size = 2 ** key_size_bits
+    print(f"Key space size: {key_space_size}")
+
+    # Assuming a computational resource capable of trying 1 billion keys per second
+    computational_power = 1e9
+    time_to_exhaustive_search_seconds = key_space_size / computational_power
+    time_to_exhaustive_search_years = time_to_exhaustive_search_seconds / (60 * 60 * 24 * 365)
+
+    print(f"Time to perform exhaustive search (years): {time_to_exhaustive_search_years}")
+
+# Example usage with a 128-bit key
+brute_force_analysis(128)
+
+def monobit_test(encrypted_message):
+    # Convert the message to a binary string
+    binary_message = ''.join(format(ord(char), '08b') for char in encrypted_message)
+
+    
+
+    # Count the number of 1s
+    num_ones = binary_message.count('1')
+    num_zeros = len(binary_message) - num_ones
+
+    # Compute the test statistic
+    S_obs = abs(num_ones - num_zeros) / (len(binary_message) ** 0.5)
+
+    # Compute the P-value
+    P_value = norm.cdf(-S_obs)
+
+    # Check against a significance level
+    significance_level = 0.01
+    if P_value < significance_level:
+        print("The sequence is non-random")
+    else:
+        print("The sequence is random")
+
+
+
 # Example usage of the code
 public_key, private_key = lattice_keygen()
 shared_secret_key = secrets.token_bytes(16)
@@ -213,6 +255,10 @@ if message_to_encrypt == decrypted_message:
     print("Decryption was successful! Original and decrypted messages are the same.")
 else:
     print("Decryption failed! Original and decrypted messages are different.")
+
+    # Example usage
+monobit_test(encrypted_message)
+
 
 algorithms = [
     "bikel1 (m4f)",
