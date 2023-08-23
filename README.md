@@ -4,7 +4,7 @@
 - [Overview](#overview)
 - [Key Components](#key-components)
 - [Core Functions](#core-functions)
-- [Testings](#Testing)
+- [Testing](#Testing)
 - [Mathematical Details](#mathematical-details)
 - [Performance Metrics](#Performance-Metrics)
 - [Visualizations](#visualizations)
