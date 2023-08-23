@@ -5,6 +5,7 @@
 - [Key Components](#key-components)
 - [Core Functions](#core-functions)
 - [Mathematical Details](#mathematical-details)
+- [Performance Metrics](#Performance-Metrics)
 - [Visualizations](#visualizations)
 - [Conclusion](#conclusion)
 
@@ -64,6 +65,17 @@ The Chaos-Lattice Cryptography System is an innovative and complex cryptographic
 - Entropy H is calculated using the formula:
   - H = -∑(p_i * log2(p_i))
   where p_i are the probabilities of unique characters in the message.
+
+# Performance Metrics
+
+**Cycle Counts**
+- key_generation_cycles = 305400.0117117539
+- encryption_cycles = 1220999.998622574
+- decryption_cycles = 881399.9884296209
+
+
+# You can store these values in variables and use them in your code as needed.
+
 
 ## Visualizations
 
