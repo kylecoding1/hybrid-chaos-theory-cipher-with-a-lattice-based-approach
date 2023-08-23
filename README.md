@@ -4,8 +4,8 @@
 - [Overview](#overview)
 - [Key Components](#key-components)
 - [Core Functions](#core-functions)
-- [Testing](#Testing)
 - [Mathematical Details](#mathematical-details)
+- [Testing](#Testing)
 - [Performance Metrics](#Performance-Metrics)
 - [Visualizations](#visualizations)
 - [Conclusion](#conclusion)
@@ -43,6 +43,29 @@ The Chaos-Lattice Cryptography System is an innovative and complex cryptographic
 
 **Signature and Verification**
 - Hash-based signing and verification are implemented using SHA-3 and HMAC.
+
+## Mathematical Details
+**Combined Chaos Map**
+- The combined chaos map evolves three variables (x, y, z):
+  - x_next = r * x * (1 - x)
+  - y_next = 1 - a * y^2 + b * x
+  - z_next = z * (1 - y)
+  These equations are iteratively applied to create chaotic dynamics, leading to high sensitivity to initial conditions and complex behavior.
+
+**Ring-LWE**
+- The Ring-LWE problem is defined over polynomial rings and is based on the hardness of finding solutions to noisy linear equations. It's a promising candidate for post-quantum cryptography, providing security under quantum attacks.
+
+**Entropy Calculation**
+- Entropy H is calculated using the formula:
+  - H = -sum(p_i * log2(p_i))
+  where p_i are the probabilities of unique characters in the message. It quantifies the randomness and unpredictability of the information.
+
+**Polynomial Arithmetic**
+- FFT-based polynomial arithmetic is used for efficient polynomial operations such as addition, subtraction, multiplication, and reduction. The FFT helps in reducing the computational complexity for polynomial multiplication.
+
+**Dynamic Key Evolution**
+- The shared secret key is evolved using the combined chaos map, with an iterative process that utilizes chaotic dynamics. This introduces additional complexity and unpredictability into the key management process.
+
 
 ## Testing
 **Entropy Calculation**
