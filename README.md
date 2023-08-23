@@ -61,8 +61,9 @@ where p_i are the probabilities of unique characters in the message.
 The Chaos-Lattice Cryptography System is a novel and complex cryptographic scheme that offers potential advantages in terms of complexity, unpredictability, and quantum resistance. By leveraging chaotic dynamics, lattice-based cryptography, and cryptographic hash functions, it introduces a robust and multifaceted approach to secure communication.
 
 ## Visualizations
-### Chaos_Lattice_Entropy
-![Chaos_Lattice_Entropy](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/f3111a2a-d278-4c81-a51a-56e49e4d0150)
+
+### Entropy Calculation Example
+![Entropy Calculation](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/9d3d884d-8304-49ba-ad59-389e7cd39897)
 
 ### Comparison-of-Key-Evolution--Chaos-Lattice-vs-Kyber- -AES
 ![Comparison of Key Evolution](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/8404f5c2-d38c-4c9b-afe9-05fe9df31803)
@@ -70,5 +71,5 @@ The Chaos-Lattice Cryptography System is a novel and complex cryptographic schem
 ### Chaos-Lattice Key Evolution Over Iterations
 ![Chaos-Lattice Key Evolution](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/c0b97836-ac35-48ce-8f9f-6f8bc8931a4b)
 
-### Entropy Calculation Example
-![Entropy Calculation](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/9d3d884d-8304-49ba-ad59-389e7cd39897)
+### Chaos_Lattice_Entropy
+![Chaos_Lattice_Entropy](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/f3111a2a-d278-4c81-a51a-56e49e4d0150)
