@@ -86,3 +86,6 @@ The key evolution graph illustrates the dynamic nature of the Chaos-Lattice syst
 
 ## Conclusion
 The Chaos-Lattice Cryptography System is a novel and complex cryptographic scheme that offers potential advantages in terms of complexity, unpredictability, and quantum resistance. By leveraging chaotic dynamics, lattice-based cryptography, and cryptographic hash functions, it introduces a robust and multifaceted approach to secure communication.
+
+## License
+MIT
