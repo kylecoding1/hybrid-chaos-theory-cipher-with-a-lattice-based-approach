@@ -69,9 +69,9 @@ The Chaos-Lattice Cryptography System is an innovative and complex cryptographic
 # Performance Metrics
 
 **Cycle Counts**
-- key_generation_cycles (100 iterations)= 305400.0117117539
-- encryption_cycles (100 iterations)= 1220999.998622574
-- decryption_cycles (100 iterations)= 881399.9884296209
+- key_generation_cycles = 305400.0117117539
+- encryption_cycles = 1220999.998622574
+- decryption_cycles = 881399.9884296209
 
 
 ## Visualizations
