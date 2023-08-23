@@ -77,11 +77,11 @@ The Chaos-Lattice Cryptography System is an innovative and complex cryptographic
 ## Visualizations
 
 ### Comparison of Execution Times.
-![Entropy Calculation](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/9d3d884d-8304-49ba-ad59-389e7cd39897).
+![Screenshot 2023-08-23 120100](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/0eeb8854-ee33-4e59-9734-97fa8e4de791)
    This chart illustrates the execution times of various cryptographic operations, including key generation, encryption, and decryption. The x-axis represents the operation type, and the y-axis represents the time taken in seconds or CPU cycles. The comparison provides insights into the performance of Chaos-Lattice/Kyber systems.
 
 ### Comparison of Key Evolution: Chaos-Lattice vs Kyber & AES
-![Comparison of Key Evolution](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/8404f5c2-d38c-4c9b-afe9-05fe9df31803).
+![Comparison-of-Key-Evolution--Chaos-Lattice-vs-Kyber- -AES](https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach/assets/128002901/d591c487-7f39-4b2f-9d03-36e4b2e812de)
 The key evolution graph illustrates the dynamic nature of the Chaos-Lattice system compared to the static nature of Kyber and AES. Dynamic key evolution can enhance security by making it more difficult for an attacker to predict or find a pattern in the key sequence. This visual representation allows you to understand how keys change over iterations and can give insights into the robustness of the Chaos-Lattice system against certain types of attacks.
 
 ## Conclusion
