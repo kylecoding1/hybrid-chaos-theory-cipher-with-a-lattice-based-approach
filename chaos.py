@@ -7,7 +7,6 @@ from typing import Tuple
 import math
 from string import ascii_letters, digits
 import random
-
 import time
 
 # Quantum-resistant hash function (SHA-3)
@@ -20,6 +19,18 @@ def combined_chaos_map(x: float, y: float, z: float, r: float = 3.9, a: float = 
     z_next = z * (1 - y) 
     return x_next % 1, y_next % 1, z_next % 1
 
+# Dynamic Key Management
+def evolve_key(shared_secret_key, iterations=10):
+    x_initial = int.from_bytes(shared_secret_key[:4], byteorder='big') / 0xFFFFFFFF
+    y_initial = int.from_bytes(shared_secret_key[4:8], byteorder='big') / 0xFFFFFFFF
+    z_initial = int.from_bytes(shared_secret_key[8:12], byteorder='big') / 0xFFFFFFFF
+    for _ in range(iterations):
+        x_initial, y_initial, z_initial = combined_chaos_map(x_initial, y_initial, z_initial)
+    evolved_key = int(x_initial * 0xFFFFFFFF).to_bytes(4, byteorder='big')
+    evolved_key += int(y_initial * 0xFFFFFFFF).to_bytes(4, byteorder='big')
+    evolved_key += int(z_initial * 0xFFFFFFFF).to_bytes(4, byteorder='big')
+    evolved_key += shared_secret_key[12:]
+    return evolved_key
 
 secure_seed = secrets.randbits(128)
 rng = Generator(PCG64(secure_seed))
@@ -42,12 +53,24 @@ def generate_random_padding(length=1000):
     characters = list(ascii_letters + digits)  # Convert to list
     return ''.join(random.choice(characters) for _ in range(length))
 
-def logistic_lattice_chaos_encapsulation(message: str, public_key: tuple, shared_secret_key) -> Tuple[str, np.ndarray, bytes, float]:
+# Hash-based key generation
+def hash_keygen():
+    return secrets.token_bytes(32) # 256-bit secret key
+
+# Hash-based signing
+def hash_sign(message, secret_key):
+    return hmac.new(secret_key, message.encode('utf-8'), sha3_256).digest()
+
+# Hash-based verification
+def hash_verify(message, signature, secret_key):
+    computed_signature = hmac.new(secret_key, message.encode('utf-8'), sha3_256).digest()
+    return computed_signature == signature
+
+def logistic_lattice_chaos_encapsulation(message, public_key, shared_secret_key, hash_secret_key):
     if not isinstance(message, str):
         raise TypeError("Message must be a string")
-
-    padding = generate_random_padding()  # Generate random padding
-    message_with_padding = padding + message  # Concatenate with the original message
+    padding = generate_random_padding()
+    message_with_padding = padding + message
     A, b = public_key
     seed = secrets.randbits(128)
     rng = Generator(PCG64(seed))
@@ -55,28 +78,35 @@ def logistic_lattice_chaos_encapsulation(message: str, public_key: tuple, shared
     error_vector = sample_gaussian(A.shape[0])
     u = (A @ random_vector + error_vector) % q
     iv = rng.random()
-    x_initial, y_initial, z_initial = iv, rng.random(), rng.random()  # Three initial conditions
+    x_initial, y_initial, z_initial = iv, rng.random(), rng.random()
     encrypted_message = ""
     for char in message_with_padding:
-        x_initial, y_initial, z_initial = combined_chaos_map(x_initial, y_initial, z_initial)  # Three variables
-        key = ord(char) + int((x_initial + y_initial + z_initial) * 256)  # Combined with z
+        x_initial, y_initial, z_initial = combined_chaos_map(x_initial, y_initial, z_initial)
+        key = ord(char) + int((x_initial + y_initial + z_initial) * 256)
         encrypted_message += chr(int(key) % 256)
-    mac = hmac_sha3(shared_secret_key, encrypted_message.encode('utf-8'))
-    return encrypted_message, u, mac, iv
+    # Evolve shared_secret_key before using it
+    evolved_shared_secret_key = evolve_key(shared_secret_key)
+    mac = hmac_sha3(evolved_shared_secret_key, encrypted_message.encode('utf-8'))
+    signature = hash_sign(encrypted_message, hash_secret_key)
+    return encrypted_message, u, mac, iv, signature
 
-def logistic_lattice_chaos_decapsulation(encrypted_message: str, u: np.ndarray, private_key, shared_secret_key, received_mac, iv: float) -> str:
-    A, b = public_key
+def logistic_lattice_chaos_decapsulation(encrypted_message, u, private_key, shared_secret_key, received_mac, iv, signature, hash_secret_key):
+    if not hash_verify(encrypted_message, signature, hash_secret_key):
+        raise Exception("Hash signature verification failed")
+    A, b = public_key  # public_key should be passed as an argument
     v = (u - (A @ private_key)) % q
-    x_initial, y_initial, z_initial = iv, 0.5, 0.5  # Three initial conditions
+    x_initial, y_initial, z_initial = iv, 0.5, 0.5
     decrypted_message_with_padding = ""
     for char in encrypted_message:
-        x_initial, y_initial, z_initial = combined_chaos_map(x_initial, y_initial, z_initial)  # Three variables
-        key = ord(char) - int((x_initial + y_initial + z_initial) * 256)  # Combined with z
+        x_initial, y_initial, z_initial = combined_chaos_map(x_initial, y_initial, z_initial)
+        key = ord(char) - int((x_initial + y_initial + z_initial) * 256)
         decrypted_message_with_padding += chr(int(key) % 256)
-    computed_mac = hmac_sha3(shared_secret_key, encrypted_message.encode('utf-8'))
+    # Evolve shared_secret_key before using it
+    evolved_shared_secret_key = evolve_key(shared_secret_key)
+    computed_mac = hmac_sha3(evolved_shared_secret_key, encrypted_message.encode('utf-8'))
     if computed_mac != received_mac:
         raise Exception("MAC verification failed")
-    return decrypted_message_with_padding[1000:]  # Remove the padding
+    return decrypted_message_with_padding[1000:]
 
 def calculate_differential(string1: str, string2: str) -> float:
     differences = sum(c1 != c2 for c1, c2 in zip(string1, string2))
@@ -100,6 +130,16 @@ def private_key_entropy(private_key):
 def key_entropy(key: bytes) -> float:
     return len(key) * math.log2(256)  # 2^8 possible values for each byte
 
+# Test the code
+message = "Test message"
+public_key, private_key = lattice_keygen()
+shared_secret_key = secrets.token_bytes(32)
+hash_secret_key = hash_keygen()
+encrypted_message, u, mac, iv, signature = logistic_lattice_chaos_encapsulation(message, public_key, shared_secret_key, hash_secret_key)
+decrypted_message = logistic_lattice_chaos_decapsulation(encrypted_message, u, private_key, shared_secret_key, mac, iv, signature, hash_secret_key)
+
+# Verify the result
+decrypted_message == message
 
 # Key Generation Timing
 start_time_keygen = time.time()
@@ -116,9 +156,10 @@ message2 = "vvvv"
 public_key, private_key = lattice_keygen() 
 shared_secret_key = secrets.token_bytes(32)
 
-encrypted_message1, u1, mac1, iv1 = logistic_lattice_chaos_encapsulation(message1, public_key, shared_secret_key)
-encrypted_message2, _, _, _ = logistic_lattice_chaos_encapsulation(message2, public_key, shared_secret_key)
-decrypted_message1 = logistic_lattice_chaos_decapsulation(encrypted_message1, u1, private_key, shared_secret_key, mac1, iv1)
+# Make sure to pass hash_secret_key as the last argument to the encapsulation function
+encrypted_message1, u1, mac1, iv1, signature1 = logistic_lattice_chaos_encapsulation(message1, public_key, shared_secret_key, hash_secret_key)
+encrypted_message2, _, _, _, _ = logistic_lattice_chaos_encapsulation(message2, public_key, shared_secret_key, hash_secret_key)
+decrypted_message1 = logistic_lattice_chaos_decapsulation(encrypted_message1, u1, private_key, shared_secret_key, mac1, iv1, signature1, hash_secret_key)
 differential_percentage = calculate_differential(encrypted_message1, encrypted_message2)
 
 # Calculate entropy of keys and messages
@@ -141,15 +182,16 @@ keygen_duration = end_time_keygen - start_time_keygen
 
 # Encryption Timing
 start_time_enc = time.time()
-encrypted_message1, u1, mac1, iv1 = logistic_lattice_chaos_encapsulation(message1, public_key, shared_secret_key)
+encrypted_message1, u1, mac1, iv1, signature1 = logistic_lattice_chaos_encapsulation(message1, public_key, shared_secret_key, hash_secret_key)
 end_time_enc = time.time()
 encryption_duration = end_time_enc - start_time_enc
 
 # Decryption Timing
 start_time_dec = time.time()
-decrypted_message1 = logistic_lattice_chaos_decapsulation(encrypted_message1, u1, private_key, shared_secret_key, mac1, iv1)
+decrypted_message1 = logistic_lattice_chaos_decapsulation(encrypted_message1, u1, private_key, shared_secret_key, mac1, iv1, signature1, hash_secret_key)
 end_time_dec = time.time()
 decryption_duration = end_time_dec - start_time_dec
+
 
 # Print Results
 
