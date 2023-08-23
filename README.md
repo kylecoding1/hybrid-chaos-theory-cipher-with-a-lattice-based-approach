@@ -2,6 +2,7 @@
 
 **Table of Contents**
 - [Overview](#overview)
+- [Installation](#Installation)
 - [Key Components](#key-components)
 - [Core Functions](#core-functions)
 - [Mathematical Details](#mathematical-details)
@@ -13,6 +14,18 @@
 
 ## Overview
 The Chaos-Lattice Cryptography System is an innovative and complex cryptographic application that combines the principles of chaotic dynamics, lattice-based cryptography, and cryptographic hash functions. It introduces a quantum-resistant method for secure communication, utilizing various mathematical concepts to ensure high levels of security, complexity, and unpredictability.
+
+### Installation
+
+Clone the Repository:
+git clone https://github.com/kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach
+.git
+
+Make sure the following libraries are installed in your Python environment:
+
+pip install numpy scipy matplotlib
+
+
 
 ## Key Components
 1. **Chaotic Maps**
