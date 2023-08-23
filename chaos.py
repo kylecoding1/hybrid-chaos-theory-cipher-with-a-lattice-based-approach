@@ -8,7 +8,9 @@ from typing import Tuple
 import math
 from string import ascii_letters, digits
 import random
-import time
+from collections import Counter
+from time import perf_counter
+import matplotlib.pyplot as plt
 
 # Quantum-resistant hash function (SHA-3)
 def hmac_sha3(key, message):
@@ -76,7 +78,7 @@ def lattice_keygen():
     private_key = s
     return public_key, private_key
 
-def generate_random_padding(length=1000):
+def generate_random_padding(length=230):
     characters = list(ascii_letters + digits)  # Convert to list
     return ''.join(random.choice(characters) for _ in range(length))
 
@@ -133,4 +135,195 @@ def logistic_lattice_chaos_decapsulation(encrypted_message, u, public_key, priva
     computed_mac = hmac_sha3(evolved_shared_secret_key, encrypted_message.encode('utf-8'))
     if computed_mac != received_mac:
         raise Exception("MAC verification failed")
-    return decrypted_message_with_padding[1000:]
+    return decrypted_message_with_padding[230:]
+
+def calculate_entropy(message):
+    probabilities = [freq / len(message) for _, freq in Counter(message).items()]
+    return -sum(p * math.log2(p) for p in probabilities)
+
+# Example usage of the code
+public_key, private_key = lattice_keygen()
+shared_secret_key = secrets.token_bytes(16)
+hash_secret_key = secrets.token_bytes(32)  # 256-bit secret key
+
+message_to_encrypt = "lolzzzzz"
+encrypted_message, u, mac, iv, signature = logistic_lattice_chaos_encapsulation(
+    message_to_encrypt, public_key, shared_secret_key, hash_secret_key
+)
+
+decrypted_message = logistic_lattice_chaos_decapsulation(
+    encrypted_message, u, public_key, private_key, shared_secret_key, mac, iv, signature, hash_secret_key
+)
+
+# Calculate the entropy
+original_entropy = calculate_entropy(message_to_encrypt)
+encrypted_entropy = calculate_entropy(encrypted_message)
+decrypted_entropy = calculate_entropy(decrypted_message)
+
+
+
+# Key Generation
+start_time = perf_counter()
+public_key, private_key = lattice_keygen()
+keygen_time = perf_counter() - start_time
+print("Key Generation Time (seconds):", keygen_time)
+
+# Encryption
+start_time = perf_counter()
+encrypted_message, u, mac, iv, signature = logistic_lattice_chaos_encapsulation(
+    message_to_encrypt, public_key, shared_secret_key, hash_secret_key
+)
+encryption_time = perf_counter() - start_time
+print("Encryption Time (seconds):", encryption_time)
+
+# Decryption
+start_time = perf_counter()
+decrypted_message = logistic_lattice_chaos_decapsulation(
+    encrypted_message, u, public_key, private_key, shared_secret_key, mac, iv, signature, hash_secret_key
+)
+decryption_time = perf_counter() - start_time
+print("Decryption Time (seconds):", decryption_time)
+
+print("Original Message Entropy:", original_entropy)
+print("Encrypted Message Entropy:", encrypted_entropy)
+print("Decrypted Message Entropy:", decrypted_entropy)
+
+
+clock_frequency = 3 * 10**9  # 3 GHz
+
+# Key Generation
+keygen_cycles = keygen_time * clock_frequency
+
+# Encryption
+encryption_cycles = encryption_time * clock_frequency
+
+# Decryption
+decryption_cycles = decryption_time * clock_frequency
+
+print("Key Generation Cycles:", keygen_cycles)
+print("Encryption Cycles:", encryption_cycles)
+print("Decryption Cycles:", decryption_cycles)
+
+algorithms = [
+    "bikel1 (m4f)",
+    "bikel1 (opt)",
+    "hqc-rmrs-128 (clean)",
+    "kyber1024 (clean)",
+    "kyber1024 (m4fspeed)",
+    "kyber1024 (m4fstack)",
+    "kyber1024-90s (clean)",
+    "kyber1024-90s (m4fspeed)",
+    "kyber1024-90s (m4fstack)",
+    "kyber512 (clean)",
+    "kyber512 (m4fspeed)",
+    "kyber512 (m4fstack)",
+    "kyber512-90s (clean)",
+    "kyber512-90s (m4fspeed)",
+    "kyber512-90s (m4fstack)",
+    "kyber768 (clean)",
+    "kyber768 (m4fspeed)",
+    "kyber768 (m4fstack)",
+    "kyber768-90s (clean)",
+    "kyber768-90s (m4fspeed)",
+    "kyber768-90s (m4fstack)",
+    "Chaos_Lattice"
+]
+
+keygen_times = [
+    389099.9942086637,
+    68198074,
+    2883811,
+    1649604,
+    1122936,
+    1126561,
+    3008837,
+    973196,
+    979692,
+    636181,
+    434438,
+    433718,
+    948446,
+    369011,
+    369736,
+    1059876,
+    706531,
+    707275,
+    1816649,
+    614455,
+    617709,
+    298800.00511184335
+]
+
+encryption_times = [
+    1057500.0196695328,
+    5085537,
+    5236720,
+    2016366,
+    1315737,
+    1323943,
+    3275730,
+    1068184,
+    1079272,
+    843945,
+    530469,
+    531676,
+    1112852,
+    421685,
+    424339,
+    1352934,
+    863343,
+    867363,
+    2032562,
+    694064,
+    700599,
+    1420199.9874785542
+]
+
+decryption_times = [
+    666000.007186085,
+    121429912,
+    7594631,
+    2159906,
+    1209901,
+    1219060,
+    3516691,
+    1059775,
+    1071817,
+    940320,
+    476712,
+    478166,
+    1261630,
+    420333,
+    423234,
+    1471055,
+    783369,
+    788053,
+    2225597,
+    688999,
+    696202,
+    618599.9955050647
+]
+
+# ... (Previous code remains the same)
+
+# Remove "bikel1 (opt)" from the list of algorithms
+
+
+
+
+# Plotting
+plt.figure(figsize=(10, 6))
+plt.barh(algorithms, keygen_times, color='blue', label='Key Generation')
+plt.barh(algorithms, encryption_times, color='green', label='Encryption', left=keygen_times)
+plt.barh(algorithms, decryption_times, color='red', label='Decryption', left=[x + y for x, y in zip(keygen_times, encryption_times)])
+plt.xlabel('Execution Time (Cycles)')
+plt.ylabel('Algorithms')
+plt.title('Comparison of Execution Times (Kyber vs Chaos_Lattice)')
+plt.legend()
+plt.tight_layout()
+
+# Save the plot as an image
+plt.savefig('execution_times_plot.png')
+
+# Print a message indicating that the plot has been saved
+print("Plot saved as 'execution_times_plot.png'")
