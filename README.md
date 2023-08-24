@@ -15,7 +15,7 @@
 ## Overview
 The Chaos-Lattice Cryptography System is an innovative and complex cryptographic application that combines the principles of chaotic dynamics, lattice-based cryptography, and cryptographic hash functions. It introduces a quantum-resistant method for secure communication, utilizing various mathematical concepts to ensure high levels of security, complexity, and unpredictability.
 
-### Installation
+## Installation
 
 Clone the Repository:
 git clone git@github.com:kylecoding1/hybrid-chaos-theory-cipher-with-a-lattice-based-approach.git
