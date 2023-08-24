@@ -49,7 +49,7 @@ pip install numpy scipy matplotlib
   - Hash Key Generation: Generates a 256-bit secret key.
 
 **Encryption and Decryption**
-- The application introduces a novel encryption and decryption scheme that combines logistic maps, lattice-based cryptography, and hash functions. It includes:
+- The application introduces an encryption and decryption scheme that combines logistic maps, lattice-based cryptography, and hash functions. It includes:
   - Chaos-based encryption: Encrypts the message using chaotic dynamics.
   - Logistic-Lattice encapsulation: Combines chaotic dynamics with lattice-based encryption.
 
